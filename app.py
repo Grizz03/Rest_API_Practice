@@ -1,6 +1,19 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
+
+stores = [
+    {
+        'name': 'My Store',
+        'items': [
+            {
+                'name': 'my item',
+                'price': 15.99
+            }
+
+        ]
+    }
+]
 
 
 # POST /store data: {name:}
@@ -17,19 +30,19 @@ def get_store(name):
 
 # GET /store
 @app.route('/store')
-def get_store():
-    pass
+def get_stores():
+    return jsonify({'stores': stores})  # Make list into a dictionary
 
 
 # POST /store/<string:name>/item {name:, price:}
 @app.route('/store/<string:name>/item', methods=['POST'])
-def create_store(name, price):
+def create_item_in_store(name, price):
     pass
 
 
 # GET /store/<string:name>/item
 @app.route('/store/<string:name>/item', methods=['GET'])
-def get_store(name):
+def get_item_in_store(name):
     pass
 
 
